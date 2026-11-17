@@ -54,3 +54,9 @@ https://giovannigobbis.github.io/pet-shop-eriya/
 ## Projeto acadêmico
 
 Projeto desenvolvido como atividade prática de desenvolvimento de sistemas, envolvendo organização de requisitos, implementação, controle de versão e documentação.
+
+## Melhorias e evolução do projeto
+
+O sistema Pet Shop Eriwa foi desenvolvido com foco na organização dos cadastros de clientes, animais e agendamentos.
+
+As melhorias incluem organização do código, armazenamento local de dados, atualização das funcionalidades e aprimoramento da interface.
