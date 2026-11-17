@@ -1,12 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Shop Eriwa</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Pet Shop Eriwa</h1>
-    <p>Sistema de gerenciamento de clientes, pets e agendamentos.</p>
+    <header>
+        <h1>Pet Shop Eriwa</h1>
+        <p>Cuidado e carinho para seu melhor amigo!</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Bem-vindo ao sistema</h2>
+            <p>Gerencie clientes, animais e agendamentos de banho e tosa.</p>
+        </section>
+
+        <section>
+            <h2>Cadastro de clientes</h2>
+            <input type="text" id="nomeCliente" placeholder="Nome do cliente">
+            <input type="text" id="telefoneCliente" placeholder="Telefone">
+            <button onclick="adicionarCliente()">Cadastrar cliente</button>
+            <ul id="listaClientes"></ul>
+        </section>
+
+        <section>
+            <h2>Cadastro de pets</h2>
+            <input type="text" id="nomePet" placeholder="Nome do pet">
+            <input type="text" id="especiePet" placeholder="Espécie">
+            <input type="text" id="tutorPet" placeholder="Nome do tutor">
+            <button onclick="adicionarPet()">Cadastrar pet</button>
+            <ul id="listaPets"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
