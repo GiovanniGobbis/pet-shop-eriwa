@@ -8,6 +8,178 @@
     <title>Pet Shop Eriwa | Gestão</title>
     <link rel="stylesheet" href="style.css">
 </head>
+    
+<!-- PAINEL DE ACESSIBILIDADE -->
+<style>
+  #accessibility-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    background: #245c42;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 10px #0004;
+  }
+
+  #accessibility-panel {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 85px;
+    z-index: 9999;
+    width: 240px;
+    padding: 18px;
+    background: white;
+    color: #222;
+    border: 2px solid #245c42;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #0003;
+  }
+
+  #accessibility-panel.open {
+    display: block;
+  }
+
+  #accessibility-panel h2 {
+    font-size: 19px;
+    margin-top: 0;
+  }
+
+  #accessibility-panel button {
+    width: 100%;
+    padding: 11px;
+    margin: 5px 0;
+    border: 1px solid #245c42;
+    border-radius: 7px;
+    background: #245c42;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #accessibility-panel button:focus-visible,
+  #accessibility-button:focus-visible {
+    outline: 3px solid #e69b00;
+    outline-offset: 3px;
+  }
+
+  body.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  body.high-contrast *:not(button) {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+
+  body.high-contrast button {
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 2px solid #ff0 !important;
+  }
+</style>
+
+<button
+  id="accessibility-button"
+  type="button"
+  aria-expanded="false"
+  aria-controls="accessibility-panel"
+  onclick="toggleAccessibility()">
+  ♿ Acessibilidade
+</button>
+
+<div id="accessibility-panel" aria-label="Opções de acessibilidade">
+  <h2>Acessibilidade</h2>
+
+  <button type="button" onclick="changeFont(1)">
+    A+ Aumentar fonte
+  </button>
+
+  <button type="button" onclick="changeFont(-1)">
+    A- Diminuir fonte
+  </button>
+
+  <button
+    type="button"
+    id="contrast-button"
+    aria-pressed="false"
+    onclick="toggleContrast()">
+    Alto contraste
+  </button>
+
+  <button type="button" onclick="resetAccessibility()">
+    Restaurar padrão
+  </button>
+</div>
+
+<script>
+  let fontScale = Number(
+    localStorage.getItem("petshop-font-scale") || 1
+  );
+
+  let highContrast =
+    localStorage.getItem("petshop-contrast") === "true";
+
+  function applyAccessibility() {
+    document.documentElement.style.fontSize =
+      (100 * fontScale) + "%";
+
+    document.body.classList.toggle(
+      "high-contrast",
+      highContrast
+    );
+
+    document.getElementById("contrast-button")
+      .setAttribute("aria-pressed", highContrast);
+  }
+
+  function toggleAccessibility() {
+    const panel = document.getElementById("accessibility-panel");
+    const button = document.getElementById("accessibility-button");
+
+    const isOpen = panel.classList.toggle("open");
+
+    button.setAttribute("aria-expanded", isOpen);
+  }
+
+  function changeFont(direction) {
+    fontScale = Math.min(
+      1.5,
+      Math.max(0.9, fontScale + direction * 0.1)
+    );
+
+    localStorage.setItem("petshop-font-scale", fontScale);
+    applyAccessibility();
+  }
+
+  function toggleContrast() {
+    highContrast = !highContrast;
+
+    localStorage.setItem("petshop-contrast", highContrast);
+    applyAccessibility();
+  }
+
+  function resetAccessibility() {
+    fontScale = 1;
+    highContrast = false;
+
+    localStorage.removeItem("petshop-font-scale");
+    localStorage.removeItem("petshop-contrast");
+
+    applyAccessibility();
+  }
+
+  applyAccessibility();
+</script>
+
 <body>
 
     <header class="topbar">
